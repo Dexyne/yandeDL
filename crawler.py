@@ -11,7 +11,7 @@ import os
 ###
 def createDir(dirName):
     if os.path.exists(dirName) == True:  # 创建对应的TAG文件夹
-        print('文件夹已经存在 ！')
+        print('Folder already exists!')
     else:
         os.mkdir(dirName)
     os.chdir(dirName)
@@ -19,7 +19,7 @@ def createDir(dirName):
 
 def ask_tag():
     word = {}
-    word['key'] = input("输入关键字： ")  # 用字典保存tag
+    word['key'] = input("Enter keywords: ")  # 用字典保存tag
     keyword = "?tags"
     url = "https://yande.re/post"
     search_word = urllib.parse.urlencode(word)  # parse tag形成网页需要的格式
@@ -42,7 +42,7 @@ def determineTag(full_url):  # 判断搜索的tag是否存在 并且做出相应
             count = count + 1  # 给每个建议的tag编号并且输出到屏幕
             if count > total_tag:
                 break  # 想不到跳出循环的方法了 于是就break
-        chooseTag = int(input('请输入要查找的TAG : '))
+        chooseTag = int(input('Enter TAG you\'re looking for: '))
         suggest_url_tag = suggestTag(listTag, chooseTag - 1)  # 通过suggestTag返回建议的tag对应url 一共给了两个参数
         suggest_url_html = getSource(suggest_url_tag)  # 第二个参数因为index从0开始 所以-1
         createDir(suggest_url_tag[27:])
@@ -130,9 +130,9 @@ def getImg(dLink, filename_list):  # getImg 函数负责下载图片并且判断
         if os.path.exists(filename_list[count]) == False:
             urllib.request.urlretrieve(x, filename_list[count])
             # urllib.request.urlretrieve(x[2:-2], filename_list[count])
-            print('下载第', count + 1, '张图片')
-            print('下载中------------')
-            print('下载中----------------')
+            print('Download', count + 1, 'Picture')
+            print('Downloading------------')
+            print('Downloading----------------')
             count = count + 1
         else:
-            print('图片已经存在 ！')
+            print('Image already exists!')

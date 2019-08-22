@@ -14,11 +14,11 @@ def coreDL(html_url):  # coreDL 函数把crawler.py里的函数封装了一遍 �
     dLink = crawler.getimgLink(html_url)
     filename_list = crawler.correct_filename(dLink)
     crawler.getImg(dLink, filename_list)
-    print('下载完成 ！ ')
+    print('Download completed!')
 
 
 def MultiPageDownload():  # MultiPageDownload 函数负责一次下载多个页面
-    total_number_of_page = int(input("请输入一共要下载页数 : "))
+    total_number_of_page = int(input("Number of page(s) to download: "))
     current_page_number = 1  # 默认当前页数为1
     full_url = crawler.ask_tag()  # 询问tag
     current_page_html, current_page_url = crawler.determineTag(full_url)  # 判断tag是否存在
@@ -37,7 +37,7 @@ def SinglePageDownload():  # SinglePageDownlaod 函数每次下载一页 完成�
     FLAG = True  # 比较关键的FLAG 不是很喜欢while True 有一个flag比较好控制吧？
     current_page_number = 1  # 同上默认第一页
     while FLAG == True:
-        answer = input('是否下载下一页内容：[Y/N]')
+        answer = input('Download next page? [Y/N]')
         if answer[0] == 'Y' or answer[0] == 'y':
             print(current_page_url)
             (next_page_url, next_page_number) = crawler.next_page(current_page_url, current_page_number)
@@ -52,7 +52,7 @@ def SinglePageDownload():  # SinglePageDownlaod 函数每次下载一页 完成�
 
 
 def main():
-    choice = int(input('请输入选项\n 1 ) 连续多页下载 \n 2 ) 单个页面下载\n'))
+    choice = int(input('Enter an option:\n 1 ) Multi Page Download\n 2 ) Single Page Download\n'))
     if choice == 1:
         MultiPageDownload()
     else:
